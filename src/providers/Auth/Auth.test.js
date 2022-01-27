@@ -21,13 +21,13 @@ jest.mock("firebase/auth", () => {
 });
 
 describe("AuthProvider", () => {
-  it("authed is false by default", () => {
-    const { container } = render(
-      <AuthProvider>
-        <AuthContext.Consumer></AuthContext.Consumer>
-      </AuthProvider>
-    );
+  // it("authed is false by default", () => {
+  //   const { container } = render(
+  //     <AuthProvider>
+  //       <AuthContext.Consumer></AuthContext.Consumer>
+  //     </AuthProvider>
+  //   );
 
-    expect(container).toBeValid();
-  });
+  //   expect(container).toBeValid();
+  // });
 });

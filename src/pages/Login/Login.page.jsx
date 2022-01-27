@@ -13,7 +13,7 @@ function LoginPage() {
   };
 
   return (
-    <div>
+    <div title="login">
       <AuthForm
         question="Haven't an account?"
         caption=""

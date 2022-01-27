@@ -2,7 +2,7 @@ import React from "react";
 
 function ArchivedPage() {
   return (
-    <div>
+    <div title="archived">
       <h1>Archived Page</h1>
     </div>
   );

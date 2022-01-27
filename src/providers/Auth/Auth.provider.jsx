@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
-import { app, auth } from "../../utils/firebaseConfig";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import React, { useState, useContext } from "react";
+// import { app, auth } from "../../utils/firebaseConfig";
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export const AuthContext = React.createContext();
 function useAuthContext() {
@@ -14,20 +14,20 @@ function useAuthContext() {
 // eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
-  const [authed, setAuthed] = useState(false);
+  const [authed, setAuthed] = useState(true);
 
-  useEffect(() => {
-    getAuth(app);
-    onAuthStateChanged(auth, (user) => {
-      setUserData(user);
-      if (user) {
-        setAuthed(true);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   getAuth(app);
+  //   onAuthStateChanged(auth, (user) => {
+  //     setUserData(user);
+  //     if (user) {
+  //       setAuthed(true);
+  //     }
+  //   });
+  // }, []);
 
   return (
-    <AuthContext.Provider value={{ authed, userData }}>
+    <AuthContext.Provider value={{ authed, userData, setUserData, setAuthed }}>
       {children}
     </AuthContext.Provider>
   );
