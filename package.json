@@ -6,11 +6,14 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "firebase": "^9.6.4",
     "husky": "^7.0.4",
+    "jest-fetch-mock": "^3.0.3",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
+    "react-test-renderer": "^17.0.2",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
@@ -42,9 +45,25 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^16.1.0",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@testing-library/react-hooks": "^7.0.2",
     "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
-    "stylelint": "^14.3.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1",
+    "stylelint": "^14.2.0",
     "stylelint-config-standard": "^24.0.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,tsx}",
+      "!<rootDir>/node_modules/",
+      "!src/reportWebVitals.js",
+      "!src/index.js",
+      "!src/utils/firebaseConfig.js"
+    ]
   }
 }
