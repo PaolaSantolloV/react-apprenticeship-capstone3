@@ -5,6 +5,7 @@ import LoginPage from "../pages/Login/Login.page";
 import NotFoundPage from "../pages/NotFound/NotFound.page";
 import PublicRoute from "./public/PublicRoute.component";
 import DashboardRoutes from "./dashboard/DashboardRoutes.component";
+import SignUpPage from "../pages/SignUp/SignUp.page";
 
 function AppRouter() {
   return (
@@ -16,6 +17,15 @@ function AppRouter() {
           element={
             <PublicRoute>
               <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          exact
+          path="/signup"
+          element={
+            <PublicRoute>
+              <SignUpPage />
             </PublicRoute>
           }
         />

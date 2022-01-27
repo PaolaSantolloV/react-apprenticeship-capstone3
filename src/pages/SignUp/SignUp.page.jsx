@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuthForm from "../../components/authForm/AuthForm.component";
 import { useLogin } from "../../hooks/useLogin";
 
-function LoginPage() {
+function SignUpPage() {
   const navigate = useNavigate();
   const [isError, setIsError] = useState(false);
 
@@ -34,4 +34,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default SignUpPage;
