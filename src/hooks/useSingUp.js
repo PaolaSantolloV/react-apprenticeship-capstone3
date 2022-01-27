@@ -11,8 +11,6 @@ export const useSingUp = (email, password) => {
       return user;
     })
     .catch((error) => {
-      //   const errorCode = error.code;
-      //   const errorMessage = error.message;
       return error;
     });
 };

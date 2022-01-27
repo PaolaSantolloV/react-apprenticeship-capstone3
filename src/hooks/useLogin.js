@@ -10,8 +10,7 @@ export const useLogin = (email, password) => {
       return user;
     })
     .catch((error) => {
-      //   const errorCode = error.code;
-      //   const errorMessage = error.message;
+      console.log(error.json());
       return error;
     });
 };
