@@ -1,33 +1,57 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import { AuthContext, AuthProvider } from "./Auth.provider";
 
-const mockGetAuth = {
-  accessToken: "eyJhbGciOiJ",
-  displayName: null,
-  email: "paola@gmail.com",
-  emailVerified: false,
-  isAnonymous: false,
-  honeNumber: null,
-  providerId: "firebase",
-  uid: "fiBjm1jd7wZwqbbnUxBpiV8VyFU2",
-};
-// const mockGetAuth = jest.fn();
-
-jest.mock("firebase/auth", () => {
-  return {
-    getAuth: () => mockGetAuth,
-  };
-});
-
 describe("AuthProvider", () => {
-  // it("authed is false by default", () => {
-  //   const { container } = render(
-  //     <AuthProvider>
-  //       <AuthContext.Consumer></AuthContext.Consumer>
-  //     </AuthProvider>
-  //   );
+  it("authed is false by default", () => {
+    const { getByText } = render(
+      <AuthProvider>
+        <AuthContext.Consumer>
+          {(value) => <span>Is authed: {value.authed.toString()}</span>}
+        </AuthContext.Consumer>
+      </AuthProvider>
+    );
 
-  //   expect(container).toBeValid();
-  // });
+    expect(getByText("Is authed: false")).toBeTruthy();
+  });
+
+  it("on login setAuthed to true", () => {
+    const data = {
+      name: "paola",
+      password: "123456",
+    };
+    const { getByText } = render(
+      <AuthProvider>
+        <AuthContext.Consumer>
+          {(value) => (
+            <>
+              <button onClick={value.login(data)}>Login</button>
+              <span>Is login in: {value.authed.toString()}</span>
+            </>
+          )}
+        </AuthContext.Consumer>
+      </AuthProvider>
+    );
+
+    fireEvent.click(getByText("Login"));
+    expect(getByText("Is login in: true")).toBeTruthy();
+  });
+
+  it("on logout setAuthed to false", () => {
+    const { getByText } = render(
+      <AuthProvider>
+        <AuthContext.Consumer>
+          {(value) => (
+            <>
+              <button onClick={value.logout}>Login</button>
+              <span>Is login in: {value.authed.toString()}</span>
+            </>
+          )}
+        </AuthContext.Consumer>
+      </AuthProvider>
+    );
+
+    fireEvent.click(getByText("Login"));
+    expect(getByText("Is login in: false")).toBeTruthy();
+  });
 });
