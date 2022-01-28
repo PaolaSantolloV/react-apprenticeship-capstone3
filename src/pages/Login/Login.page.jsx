@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../../components/authForm/AuthForm.component";
 import { useLogin } from "../../hooks/useLogin";
+import { StyledLoginContainer } from "./Login.styles";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -22,15 +23,14 @@ function LoginPage() {
   };
 
   return (
-    <div title="login">
+    <StyledLoginContainer title="login">
       <AuthForm
         question="Haven't an account?"
-        caption=""
         labelButton="Login"
         onSubmit={onSubmitLogin}
         isError={isError}
       />
-    </div>
+    </StyledLoginContainer>
   );
 }
 

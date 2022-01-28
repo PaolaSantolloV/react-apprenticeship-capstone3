@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import Input from "../input/Input.component";
 import Button from "../button/Button.component";
+import {
+  StyledFormContainer,
+  StyledLabelCaption,
+  StyledLabelError,
+  StyledLabelQuestion,
+  StyledLabelTitle,
+  StyledWrapper,
+  StyledWrapperButton,
+} from "./AuthForm.styles";
 
 // eslint-disable-next-line react/prop-types
 function AuthForm({ question, caption, labelButton, onSubmit, isError }) {
@@ -13,11 +22,12 @@ function AuthForm({ question, caption, labelButton, onSubmit, isError }) {
     });
   };
   return (
-    <div>
-      <h3>{question} </h3>
-      <h1>Welcome to notes!</h1>
-      <h2>{caption}</h2>
-      <p>Email</p>
+    <StyledFormContainer title="auth-form">
+      <StyledLabelQuestion>{question} </StyledLabelQuestion>
+      <StyledWrapper>
+        <StyledLabelTitle>Welcome to notes!</StyledLabelTitle>
+        {caption && <StyledLabelCaption>{caption}</StyledLabelCaption>}
+      </StyledWrapper>
       <Input
         placeholder="example@gmail.com"
         type="text"
@@ -25,8 +35,8 @@ function AuthForm({ question, caption, labelButton, onSubmit, isError }) {
         title="email"
         onChange={(event) => handleChange({ fieldName: "email", event })}
         value={authData.email}
+        label="Email"
       />
-      <p>Password</p>
       <Input
         placeholder="*******"
         type="password"
@@ -34,18 +44,21 @@ function AuthForm({ question, caption, labelButton, onSubmit, isError }) {
         title="password"
         onChange={(event) => handleChange({ fieldName: "password", event })}
         value={authData.password}
+        label="Password"
       />
       {isError === true && (
-        <h4 title="error-label">
+        <StyledLabelError title="error-label">
           * Email or password are incorrect. Please try again.
-        </h4>
+        </StyledLabelError>
       )}
-      <Button
-        title="auth-button"
-        label={labelButton}
-        onClick={() => onSubmit(authData.email, authData.password)}
-      />
-    </div>
+      <StyledWrapperButton>
+        <Button
+          title="auth-button"
+          label={labelButton}
+          onClick={() => onSubmit(authData.email, authData.password)}
+        />
+      </StyledWrapperButton>
+    </StyledFormContainer>
   );
 }
 

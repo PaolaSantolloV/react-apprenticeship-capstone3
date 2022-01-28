@@ -26,7 +26,7 @@ describe("<AuthForm>", () => {
     expect(passwordInput).toBeInTheDocument();
     expect(button).toBeInTheDocument();
   });
-  test("should label error render correctly when a error exist", () => {
+  test("should render label error correctly when a error exist", () => {
     const { getByTitle } = render(
       <AuthForm
         question="Already have an account"
@@ -38,5 +38,18 @@ describe("<AuthForm>", () => {
     );
     const errorLabel = getByTitle("error-label");
     expect(errorLabel).toBeInTheDocument();
+  });
+
+  test("should render AuthForm correctly without caption", () => {
+    const { getByTitle } = render(
+      <AuthForm
+        question="Already have an account"
+        labelButton={"Submit"}
+        onSubmit={onSubmit}
+        isError={true}
+      />
+    );
+    const authForm = getByTitle("auth-form");
+    expect(authForm).toBeInTheDocument();
   });
 });

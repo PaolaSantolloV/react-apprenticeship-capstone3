@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../../components/authForm/AuthForm.component";
 import { useLogin } from "../../hooks/useLogin";
+import { StyledSignUpContainer } from "./SignUp.styles";
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -22,15 +23,15 @@ function SignUpPage() {
   };
 
   return (
-    <div title="login">
+    <StyledSignUpContainer title="sign-up">
       <AuthForm
-        question="Haven't an account?"
-        caption=""
-        labelButton="Login"
+        question="Already have an account?"
+        caption="Register your account"
+        labelButton="Sign up"
         onSubmit={onSubmitLogin}
         isError={isError}
       />
-    </div>
+    </StyledSignUpContainer>
   );
 }
 
