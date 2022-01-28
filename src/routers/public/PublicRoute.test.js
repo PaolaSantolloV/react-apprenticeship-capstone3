@@ -25,7 +25,7 @@ describe("<PublicRoute>", () => {
         </MemoryRouter>
       </AuthContext.Provider>
     );
-    const loginPage = getByTitle("login");
+    const loginPage = getByTitle("login-page");
     expect(loginPage).toBeInTheDocument();
   });
 

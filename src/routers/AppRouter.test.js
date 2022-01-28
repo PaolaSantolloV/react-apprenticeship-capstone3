@@ -14,7 +14,7 @@ describe("<AppRouter>", () => {
         <AppRouter />
       </AuthContext.Provider>
     );
-    const loginPage = getByTitle("login");
+    const loginPage = getByTitle("login-page");
     expect(loginPage).toBeInTheDocument();
   });
 

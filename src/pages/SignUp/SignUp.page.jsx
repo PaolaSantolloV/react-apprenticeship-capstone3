@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../../components/authForm/AuthForm.component";
-import { useLogin } from "../../hooks/useLogin";
+import { useSignUp } from "../../hooks/useSignUp";
 import { StyledSignUpContainer } from "./SignUp.styles";
 
 function SignUpPage() {
   const navigate = useNavigate();
   const [isError, setIsError] = useState(false);
 
-  const onSubmitLogin = async (email, password) => {
-    console.log(email, password);
-
-    useLogin(email, password)
-      .then((result) => {
-        navigate("/notes");
-        console.log(result);
-        setIsError(false);
+  const onSubmitSignUp = async (email, password) => {
+    useSignUp(email, password)
+      .then(() => {
+        navigate("/login");
       })
       .catch(() => {
         setIsError(true);
@@ -23,13 +19,14 @@ function SignUpPage() {
   };
 
   return (
-    <StyledSignUpContainer title="sign-up">
+    <StyledSignUpContainer title="sign-up-page">
       <AuthForm
         question="Already have an account?"
         caption="Register your account"
         labelButton="Sign up"
-        onSubmit={onSubmitLogin}
+        onSubmit={onSubmitSignUp}
         isError={isError}
+        pathQuestion="/login"
       />
     </StyledSignUpContainer>
   );

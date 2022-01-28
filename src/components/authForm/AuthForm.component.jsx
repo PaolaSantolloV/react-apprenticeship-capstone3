@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Input from "../input/Input.component";
 import Button from "../button/Button.component";
 import {
@@ -11,8 +13,14 @@ import {
   StyledWrapperButton,
 } from "./AuthForm.styles";
 
-// eslint-disable-next-line react/prop-types
-function AuthForm({ question, caption, labelButton, onSubmit, isError }) {
+function AuthForm({
+  question,
+  caption,
+  pathQuestion,
+  labelButton,
+  onSubmit,
+  isError,
+}) {
   const [authData, setAuthData] = useState({ email: "", password: "" });
 
   const handleChange = ({ fieldName, event }) => {
@@ -23,7 +31,9 @@ function AuthForm({ question, caption, labelButton, onSubmit, isError }) {
   };
   return (
     <StyledFormContainer title="auth-form">
-      <StyledLabelQuestion>{question} </StyledLabelQuestion>
+      <Link style={{ textDecoration: "none" }} to={pathQuestion}>
+        <StyledLabelQuestion>{question} </StyledLabelQuestion>
+      </Link>
       <StyledWrapper>
         <StyledLabelTitle>Welcome to notes!</StyledLabelTitle>
         {caption && <StyledLabelCaption>{caption}</StyledLabelCaption>}

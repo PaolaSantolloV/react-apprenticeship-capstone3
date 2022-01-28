@@ -2,19 +2,23 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import AuthForm from "./AuthForm.component";
+import { MemoryRouter } from "react-router-dom";
 
 const onSubmit = jest.fn();
 
 describe("<AuthForm>", () => {
   test("should create the auth form correctly", () => {
     const { getByTitle } = render(
-      <AuthForm
-        question="Already have an account"
-        caption="Register"
-        labelButton={"Submit"}
-        onSubmit={onSubmit}
-        isError={false}
-      />
+      <MemoryRouter>
+        <AuthForm
+          question="Already have an account"
+          caption="Register"
+          labelButton={"Submit"}
+          onSubmit={onSubmit}
+          isError={false}
+          pathQuestion="/login"
+        />
+      </MemoryRouter>
     );
     const emailInput = getByTitle("email");
     const passwordInput = getByTitle("password");
@@ -28,13 +32,16 @@ describe("<AuthForm>", () => {
   });
   test("should render label error correctly when a error exist", () => {
     const { getByTitle } = render(
-      <AuthForm
-        question="Already have an account"
-        caption="Register"
-        labelButton={"Submit"}
-        onSubmit={onSubmit}
-        isError={true}
-      />
+      <MemoryRouter>
+        <AuthForm
+          question="Already have an account"
+          caption="Register"
+          labelButton={"Submit"}
+          onSubmit={onSubmit}
+          isError={true}
+          pathQuestion="/login"
+        />
+      </MemoryRouter>
     );
     const errorLabel = getByTitle("error-label");
     expect(errorLabel).toBeInTheDocument();
@@ -42,12 +49,15 @@ describe("<AuthForm>", () => {
 
   test("should render AuthForm correctly without caption", () => {
     const { getByTitle } = render(
-      <AuthForm
-        question="Already have an account"
-        labelButton={"Submit"}
-        onSubmit={onSubmit}
-        isError={true}
-      />
+      <MemoryRouter>
+        <AuthForm
+          question="Already have an account"
+          labelButton={"Submit"}
+          onSubmit={onSubmit}
+          isError={true}
+          pathQuestion="/login"
+        />
+      </MemoryRouter>
     );
     const authForm = getByTitle("auth-form");
     expect(authForm).toBeInTheDocument();
