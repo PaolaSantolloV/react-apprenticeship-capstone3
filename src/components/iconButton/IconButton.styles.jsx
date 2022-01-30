@@ -6,8 +6,8 @@ export const StyledIconButton = styled.button`
   outline: none;
   z-index: 3;
   align-items: center;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 25px;
   padding: 0;
   margin-right: 5px;

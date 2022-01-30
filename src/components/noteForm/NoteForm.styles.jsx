@@ -32,5 +32,12 @@ export const StyledTextarea = styled.textarea`
 export const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: right;
-  margin-top: 5px;
+  height: 40px;
+`;
+
+export const StyledColorWrapper = styled.div`
+  padding-top: 20px;
+  padding-right: 9px;
+  justify-content: right;
+  display: flex;
 `;

@@ -1,18 +1,27 @@
 import React, { useState } from "react";
 import { FiX, FiCheck, FiTrash, FiRotateCcw } from "react-icons/fi";
+import { BiColorFill } from "react-icons/bi";
+import { HuePicker } from "react-color";
 import IconButton from "../iconButton/IconButton.component";
 import Modal from "../modal/Modal.component";
 import {
   StyledFormNoteContainer,
   StyledTextarea,
   StyledButtonWrapper,
+  StyledColorWrapper,
 } from "./NoteForm.styles";
 
 // eslint-disable-next-line react/prop-types
 function NoteForm({ id, isArchived, showModal, handleModal }) {
+  const [showSelectColor, setShowSelectColor] = useState(false);
+  const [colorSelected, setColorSelected] = useState({
+    background: "#fff",
+  });
+
   const [noteData, setNoteData] = useState({
     title: "",
     note: "",
+    color: "#fff",
     status: true,
   });
 
@@ -21,6 +30,17 @@ function NoteForm({ id, isArchived, showModal, handleModal }) {
       ...noteData,
       [fieldName]: event.currentTarget.value,
     });
+  };
+
+  const handleShowSelectColor = () => setShowSelectColor(true);
+
+  const handleSelectColor = (color) => {
+    setColorSelected({ background: color.hex });
+    setNoteData({
+      ...noteData,
+      color: color.hex,
+    });
+    setShowSelectColor(false);
   };
 
   return (
@@ -36,7 +56,23 @@ function NoteForm({ id, isArchived, showModal, handleModal }) {
           value={noteData.note}
           title="description-note"
         />
+        {showSelectColor && (
+          <StyledColorWrapper>
+            <HuePicker
+              color={colorSelected.background}
+              onChangeComplete={handleSelectColor}
+            />
+          </StyledColorWrapper>
+        )}
         <StyledButtonWrapper>
+          <IconButton
+            backgroundColor="transparent"
+            border="transparent"
+            title="color"
+            onClick={handleShowSelectColor}
+          >
+            <BiColorFill color="#000000" size="20px" />
+          </IconButton>
           <IconButton
             backgroundColor="transparent"
             border="transparent"

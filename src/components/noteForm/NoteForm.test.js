@@ -11,6 +11,9 @@ describe("<NoteForm/>", () => {
     const inputDescription = getByTitle("description-note");
     fireEvent.change(inputDescription, { target: { value: "test input" } });
 
+    const color = getByTitle("color");
+    fireEvent.click(color);
+
     const cancel = getByTitle("cancel");
     fireEvent.click(cancel);
 
@@ -21,6 +24,7 @@ describe("<NoteForm/>", () => {
     fireEvent.click(save);
 
     expect(cancel).toBeInTheDocument();
+    expect(color).toBeInTheDocument();
     expect(archive).toBeInTheDocument();
     expect(save).toBeInTheDocument();
     expect(inputDescription).toBeInTheDocument();
@@ -34,6 +38,9 @@ describe("<NoteForm/>", () => {
     const inputDescription = getByTitle("description-note");
     fireEvent.change(inputDescription, { target: { value: "test input" } });
 
+    const color = getByTitle("color");
+    fireEvent.click(color);
+
     const cancel = getByTitle("cancel");
     fireEvent.click(cancel);
 
@@ -44,6 +51,7 @@ describe("<NoteForm/>", () => {
     fireEvent.click(save);
 
     expect(cancel).toBeInTheDocument();
+    expect(color).toBeInTheDocument();
     expect(restore).toBeInTheDocument();
     expect(save).toBeInTheDocument();
     expect(card).toBeInTheDocument();
