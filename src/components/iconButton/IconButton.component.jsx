@@ -1,11 +1,35 @@
+/* eslint-disable react/prop-types */
 import React from "react";
+import {
+  StyledContainerIconButton,
+  StyledIconButton,
+  StyledLabelIconButton,
+} from "./IconButton.styles";
 
-// eslint-disable-next-line react/prop-types
-function IconButton({ title, children, onClick }) {
+function IconButton({
+  title,
+  children,
+  onClick,
+  backgroundColor,
+  border,
+  text,
+}) {
   return (
-    <button title={title} onClick={onClick}>
-      {children}
-    </button>
+    <StyledContainerIconButton>
+      <StyledIconButton
+        title={title}
+        onClick={onClick}
+        background={backgroundColor}
+        border={border}
+      >
+        {children}
+      </StyledIconButton>
+      {text && (
+        <StyledLabelIconButton title="icon-text" color={border}>
+          {text}
+        </StyledLabelIconButton>
+      )}
+    </StyledContainerIconButton>
   );
 }
 

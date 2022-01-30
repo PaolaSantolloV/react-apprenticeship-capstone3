@@ -17,4 +17,13 @@ describe("<IconButton/>", () => {
     const button = getByRole("button");
     expect(button).toBeInTheDocument();
   });
+  test("should click in the icon button with text element correctly", () => {
+    const { getByRole, getByTitle } = render(
+      <IconButton title="test" onClick={onClick} text="test" />
+    );
+    const button = getByRole("button");
+    const text = getByTitle("icon-text");
+    expect(text).toBeInTheDocument();
+    expect(button).toBeInTheDocument();
+  });
 });

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const StyledContainer = styled.div`
+  margin-bottom: 100%;
+`;
+
 export const StyledFormContainer = styled.div`
   display: flex;
   flex-direction: column;

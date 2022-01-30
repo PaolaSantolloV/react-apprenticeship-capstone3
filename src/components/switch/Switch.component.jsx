@@ -1,15 +1,21 @@
 import React from "react";
+import {
+  StyledInput,
+  StyledSpan,
+  StyledSwitch,
+  StyledWrapper,
+} from "./Switch.styles";
 
 // eslint-disable-next-line react/prop-types
 function Switch({ isOn, handleToggle, label }) {
   return (
-    <div title="switch">
-      {label && <h4 title="label">{label}</h4>}
-      <label>
-        <input checked={isOn} onChange={handleToggle} />
-        <span />
-      </label>
-    </div>
+    <StyledWrapper title="switch">
+      <StyledSwitch>
+        <StyledInput checked={isOn} onChange={handleToggle} />
+        <StyledSpan />
+      </StyledSwitch>
+      {label && <h2 title="label">{label}</h2>}
+    </StyledWrapper>
   );
 }
 
