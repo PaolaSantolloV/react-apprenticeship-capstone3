@@ -17,7 +17,6 @@ export const StyledWrapperNotes = styled.div`
 
 export const StyledWrapperError = styled.div`
   display: flex;
-  position: absolute;
   width: 100%;
   top: 20%;
 `;

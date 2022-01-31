@@ -42,7 +42,7 @@ function NotesPage() {
         ) : (
           <StyledWrapperError>
             <StyledLabelError title="no-notes">
-              there are no notes, please add a new note.
+              There are no notes, please add a new note.
             </StyledLabelError>
           </StyledWrapperError>
         )}

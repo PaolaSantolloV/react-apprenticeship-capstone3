@@ -1,10 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useAllNotes } from "../../hooks/useAllNotes";
+import { useAuthContext } from "../Auth/Auth.provider";
 
 export const GlobalContext = React.createContext();
 
 // eslint-disable-next-line react/prop-types
 export const GlobalProvider = ({ children }) => {
+  const { userData } = useAuthContext();
   const [isDark, setIsDark] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,9 +31,15 @@ export const GlobalProvider = ({ children }) => {
             id: key,
             ...data[key],
           };
-          if (data[key].status === true) {
+          if (
+            data[key].status === true &&
+            data[key].idUser === userData.user.uid
+          ) {
             notesActive.push(note);
-          } else {
+          } else if (
+            data[key].status === false &&
+            data[key].idUser === userData.user.uid
+          ) {
             notesArchive.push(note);
           }
         }

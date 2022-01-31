@@ -13,10 +13,12 @@ import {
 } from "./NoteForm.styles";
 import { useAddNote } from "../../hooks/useAddNote";
 import { useGlobalContext } from "../../providers/Global/Global.provider";
+import { useAuthContext } from "../../providers/Auth/Auth.provider";
 
 // eslint-disable-next-line react/prop-types
 function NoteForm({ id, isArchived, showModal, handleModal, isForm }) {
   const { loading } = useGlobalContext();
+  const { userData } = useAuthContext();
   const [showSelectColor, setShowSelectColor] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -28,6 +30,7 @@ function NoteForm({ id, isArchived, showModal, handleModal, isForm }) {
     note: "",
     color: "#fff",
     status: true,
+    idUser: userData.user.uid,
   });
 
   const handleChange = ({ fieldName, event }) => {
