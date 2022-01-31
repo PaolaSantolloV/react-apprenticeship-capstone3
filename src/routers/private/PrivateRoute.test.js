@@ -5,6 +5,7 @@ import PrivateRoute from "./PrivateRoute.component";
 import { AuthContext } from "../../providers/Auth/Auth.provider";
 import { MemoryRouter } from "react-router-dom";
 import NotesPage from "../../pages/Notes/Notes.page";
+import { GlobalContext } from "../../providers/Global/Global.provider";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -16,13 +17,25 @@ describe("<PrivateRoute>", () => {
     const contextValue = {
       authed: true,
     };
+    const contextValueGlobal = {
+      allNotes: [
+        {
+          color: "#0077ff",
+          id: "-Muh0xRHUL46QtpMkmce",
+          note: "notes teste",
+          status: true,
+        },
+      ],
+    };
     const { getByTitle } = render(
       <AuthContext.Provider value={contextValue}>
-        <MemoryRouter>
-          <PrivateRoute>
-            <NotesPage />
-          </PrivateRoute>
-        </MemoryRouter>
+        <GlobalContext.Provider value={contextValueGlobal}>
+          <MemoryRouter>
+            <PrivateRoute>
+              <NotesPage />
+            </PrivateRoute>
+          </MemoryRouter>
+        </GlobalContext.Provider>
       </AuthContext.Provider>
     );
     const notesPage = getByTitle("notes");
@@ -36,7 +49,7 @@ describe("<PrivateRoute>", () => {
     const { getByText } = render(
       <AuthContext.Provider value={contextValue}>
         <MemoryRouter initialEntries={["/"]}>
-          <PrivateRoute></PrivateRoute>
+          <PrivateRoute />
         </MemoryRouter>
       </AuthContext.Provider>
     );

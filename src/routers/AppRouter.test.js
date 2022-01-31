@@ -3,6 +3,18 @@ import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { AuthContext } from "../providers/Auth/Auth.provider";
 import AppRouter from "./AppRouter.component";
+import { GlobalContext } from "../providers/Global/Global.provider";
+
+const contextValueGlobal = {
+  allNotes: [
+    {
+      color: "#0077ff",
+      id: "-Muh0xRHUL46QtpMkmce",
+      note: "notes teste",
+      status: true,
+    },
+  ],
+};
 
 describe("<AppRouter>", () => {
   test("sould render loginPage if isn't authed", () => {
@@ -24,7 +36,9 @@ describe("<AppRouter>", () => {
     };
     const { getByTitle } = render(
       <AuthContext.Provider value={contextValue}>
-        <AppRouter />
+        <GlobalContext.Provider value={contextValueGlobal}>
+          <AppRouter />
+        </GlobalContext.Provider>
       </AuthContext.Provider>
     );
     const notesPage = getByTitle("notes");

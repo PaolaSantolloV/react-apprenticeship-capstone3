@@ -6,6 +6,7 @@ export const StyledNoteContainer = styled.div`
   border-radius: 2px;
   height: 150px;
   box-shadow: 0px 0px 15px 1px #e9e9e9;
+  margin: 10px;
 `;
 
 export const StyledLabel = styled.p`
@@ -22,7 +23,7 @@ export const StyledLabel = styled.p`
 export const StyledColor = styled.div`
   width: 10px;
   height: 10px;
-  background: red;
+  background-color: ${(props) => props.color};
   border-radius: 15px;
 `;
 

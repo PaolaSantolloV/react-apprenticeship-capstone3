@@ -7,13 +7,13 @@ import {
 } from "./NoteCard.styles";
 
 // eslint-disable-next-line react/prop-types
-function NoteCard({ text }) {
+function NoteCard({ note, color, id }) {
   return (
-    <StyledNoteContainer>
+    <StyledNoteContainer title={id}>
       <StyledWrapperColor title="selected-color">
-        <StyledColor />
+        <StyledColor color={color} />
       </StyledWrapperColor>
-      <StyledLabel title="note-text">{text}</StyledLabel>
+      <StyledLabel title="note-text">{note}</StyledLabel>
     </StyledNoteContainer>
   );
 }

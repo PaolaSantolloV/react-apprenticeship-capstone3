@@ -4,9 +4,21 @@ import "@testing-library/jest-dom";
 import DashboardRoutes from "./DashboardRoutes.component";
 import { AuthContext } from "../../providers/Auth/Auth.provider";
 import { MemoryRouter } from "react-router-dom";
+import { GlobalContext } from "../../providers/Global/Global.provider";
 
 const contextValue = {
   authed: true,
+};
+
+const contextValueGlobal = {
+  allNotes: [
+    {
+      color: "#0077ff",
+      id: "-Muh0xRHUL46QtpMkmce",
+      note: "notes teste",
+      status: true,
+    },
+  ],
 };
 
 describe("<DashboardRoutes />", () => {
@@ -24,9 +36,11 @@ describe("<DashboardRoutes />", () => {
   test("should render notes route correctly", () => {
     const { getByTitle } = render(
       <AuthContext.Provider value={contextValue}>
-        <MemoryRouter initialEntries={["/notes"]}>
-          <DashboardRoutes />
-        </MemoryRouter>
+        <GlobalContext.Provider value={contextValueGlobal}>
+          <MemoryRouter initialEntries={["/notes"]}>
+            <DashboardRoutes />
+          </MemoryRouter>
+        </GlobalContext.Provider>
       </AuthContext.Provider>
     );
     const notesPage = getByTitle("notes");
