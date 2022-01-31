@@ -3,16 +3,15 @@ import { FiPlus } from "react-icons/fi";
 import IconButton from "../../components/iconButton/IconButton.component";
 import NoteCard from "../../components/noteCard/NoteCard.component";
 import NoteForm from "../../components/noteForm/NoteForm.component";
-import { useAuthContext } from "../../providers/Auth/Auth.provider";
+// import { useAuthContext } from "../../providers/Auth/Auth.provider";
 import { StyledWrapperAdd } from "./Notes.styles";
 
 function NotesPage() {
-  const { userData } = useAuthContext();
+  // const { userData } = useAuthContext();
   const [showModal, setShowModal] = useState(false);
 
   const handleModal = () => setShowModal(!showModal);
 
-  console.log(userData);
   return (
     <div title="notes">
       <StyledWrapperAdd>

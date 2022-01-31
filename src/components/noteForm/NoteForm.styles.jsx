@@ -41,3 +41,10 @@ export const StyledColorWrapper = styled.div`
   justify-content: right;
   display: flex;
 `;
+
+export const StyledLabelError = styled.p`
+  font-size: x-small;
+  font-weight: 100;
+  color: red;
+  margin-top: 6px;
+`;

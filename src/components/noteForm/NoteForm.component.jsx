@@ -9,17 +9,20 @@ import {
   StyledTextarea,
   StyledButtonWrapper,
   StyledColorWrapper,
+  StyledLabelError,
 } from "./NoteForm.styles";
+import { useAddNote } from "../../hooks/useAddNote";
 
 // eslint-disable-next-line react/prop-types
 function NoteForm({ id, isArchived, showModal, handleModal }) {
   const [showSelectColor, setShowSelectColor] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   const [colorSelected, setColorSelected] = useState({
     background: "#fff",
   });
 
   const [noteData, setNoteData] = useState({
-    title: "",
     note: "",
     color: "#fff",
     status: true,
@@ -43,6 +46,16 @@ function NoteForm({ id, isArchived, showModal, handleModal }) {
     setShowSelectColor(false);
   };
 
+  const add = async () => {
+    useAddNote(noteData)
+      .then(() => {
+        handleModal();
+      })
+      .catch(() => {
+        setIsError(true);
+      });
+  };
+
   return (
     <Modal title="modal-note" show={showModal} handleClose={handleModal}>
       <StyledFormNoteContainer title="note-form">
@@ -62,6 +75,13 @@ function NoteForm({ id, isArchived, showModal, handleModal }) {
               color={colorSelected.background}
               onChangeComplete={handleSelectColor}
             />
+          </StyledColorWrapper>
+        )}
+        {isError === true && (
+          <StyledColorWrapper>
+            <StyledLabelError title="error-label">
+              * An error occurred please try again.
+            </StyledLabelError>
           </StyledColorWrapper>
         )}
         <StyledButtonWrapper>
@@ -101,6 +121,7 @@ function NoteForm({ id, isArchived, showModal, handleModal }) {
             backgroundColor="transparent"
             border="transparent"
             title="save"
+            onClick={add}
           >
             <FiCheck color="#43C16B" size="20px" />
           </IconButton>
