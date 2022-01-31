@@ -12,10 +12,13 @@ import {
 } from "./Notes.styles";
 
 function NotesPage() {
-  const { activeNotes } = useGlobalContext();
+  const { activeNotes, isLoading } = useGlobalContext();
   const [showModal, setShowModal] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [noteDataEdit, setNoteDateEdit] = useState({});
+
   const handleModal = () => setShowModal(!showModal);
-  console.log(activeNotes);
+  const handleModalEdit = () => setShowModalEdit(!showModalEdit);
 
   return (
     <div title="notes">
@@ -26,6 +29,7 @@ function NotesPage() {
           title="add-note"
           onClick={handleModal}
           text="Add a new note"
+          textColor="##858ae3"
         >
           <FiPlus color="#858ae3" size="20px" />
         </IconButton>
@@ -36,9 +40,26 @@ function NotesPage() {
         isForm
         isArchived={false}
       />
+      <NoteForm
+        handleModal={handleModalEdit}
+        showModal={showModalEdit}
+        isForm={false}
+        isArchived={false}
+        noteDataEdit={noteDataEdit}
+      />
       <StyledWrapperNotes>
         {activeNotes.length > 0 ? (
-          activeNotes.map((note) => <NoteCard key={note.id} {...note} />)
+          activeNotes.map((note) => (
+            <NoteCard
+              onClick={() => {
+                setNoteDateEdit(note), handleModalEdit();
+              }}
+              key={note.id}
+              {...note}
+            />
+          ))
+        ) : isLoading === true ? (
+          <h2>Loading...</h2>
         ) : (
           <StyledWrapperError>
             <StyledLabelError title="no-notes">

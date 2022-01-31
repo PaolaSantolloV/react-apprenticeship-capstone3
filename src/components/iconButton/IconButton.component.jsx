@@ -13,6 +13,7 @@ function IconButton({
   backgroundColor,
   border,
   text,
+  textColor,
 }) {
   return (
     <StyledContainerIconButton>
@@ -25,7 +26,7 @@ function IconButton({
         {children}
       </StyledIconButton>
       {text && (
-        <StyledLabelIconButton title="icon-text" color={border}>
+        <StyledLabelIconButton title="icon-text" color={textColor}>
           {text}
         </StyledLabelIconButton>
       )}

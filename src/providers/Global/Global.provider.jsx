@@ -17,13 +17,11 @@ export const GlobalProvider = ({ children }) => {
     setIsDark(!isDark);
   };
 
-  const loading = (value) => {
-    setIsLoading(value);
-  };
-
   useEffect(() => {
+    console.log("ok");
     useAllNotes()
       .then((data) => {
+        setIsLoading(true);
         const notesActive = [];
         const notesArchive = [];
         for (const key in data) {
@@ -45,11 +43,13 @@ export const GlobalProvider = ({ children }) => {
         }
         setActiveNotes(notesActive);
         setArchiveNotes(notesArchive);
+        setIsLoading(false);
       })
       .catch(() => {
         setIsError(true);
+        setIsLoading(false);
       });
-  }, [isLoading]);
+  }, []);
 
   return (
     <GlobalContext.Provider
@@ -60,7 +60,7 @@ export const GlobalProvider = ({ children }) => {
         activeNotes,
         archiveNotes,
         isLoading,
-        loading,
+        setIsLoading,
       }}
     >
       {children}

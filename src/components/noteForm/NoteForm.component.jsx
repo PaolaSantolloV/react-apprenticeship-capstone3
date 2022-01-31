@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { FiX, FiCheck, FiTrash, FiRotateCcw } from "react-icons/fi";
 import { BiColorFill } from "react-icons/bi";
@@ -12,26 +13,45 @@ import {
   StyledLabelError,
 } from "./NoteForm.styles";
 import { useAddNote } from "../../hooks/useAddNote";
+import { useEditNote } from "../../hooks/useEditNote";
 import { useGlobalContext } from "../../providers/Global/Global.provider";
 import { useAuthContext } from "../../providers/Auth/Auth.provider";
 
-// eslint-disable-next-line react/prop-types
-function NoteForm({ id, isArchived, showModal, handleModal, isForm }) {
-  const { loading } = useGlobalContext();
+function NoteForm({
+  id,
+  isArchived,
+  showModal,
+  handleModal,
+  isForm,
+  noteDataEdit,
+}) {
+  const { setIsLoading } = useGlobalContext();
   const { userData } = useAuthContext();
   const [showSelectColor, setShowSelectColor] = useState(false);
   const [isError, setIsError] = useState(false);
-
   const [colorSelected, setColorSelected] = useState({
     background: "#fff",
   });
 
-  const [noteData, setNoteData] = useState({
-    note: "",
-    color: "#fff",
-    status: true,
-    idUser: userData.user.uid,
-  });
+  console.log("edi", noteDataEdit);
+
+  const [noteData, setNoteData] = useState(
+    noteDataEdit
+      ? {
+          note: noteDataEdit.note,
+          color: noteDataEdit.color,
+          status: noteDataEdit.status,
+          idUser: userData.user.uid,
+        }
+      : {
+          note: "",
+          color: "#fff",
+          status: true,
+          idUser: userData.user.uid,
+        }
+  );
+
+  console.log(noteData);
 
   const handleChange = ({ fieldName, event }) => {
     setNoteData({
@@ -54,9 +74,33 @@ function NoteForm({ id, isArchived, showModal, handleModal, isForm }) {
   const add = async () => {
     useAddNote(noteData)
       .then(() => {
-        loading(true);
+        setIsLoading(true);
         handleModal();
-        loading(false);
+        setIsLoading(false);
+        // setNoteData({
+        //   note: "",
+        //   color: "#fff",
+        //   status: true,
+        //   idUser: userData.user.uid,
+        // });
+      })
+      .catch(() => {
+        setIsError(true);
+      });
+  };
+
+  const edit = async () => {
+    useEditNote(noteDataEdit.id, noteData)
+      .then(() => {
+        setIsLoading(true);
+        handleModal();
+        setIsLoading(false);
+        // setNoteData({
+        //   note: "",
+        //   color: "#fff",
+        //   status: true,
+        //   idUser: userData.user.uid,
+        // });
       })
       .catch(() => {
         setIsError(true);
@@ -95,12 +139,12 @@ function NoteForm({ id, isArchived, showModal, handleModal, isForm }) {
           <IconButton title="color" onClick={handleShowSelectColor}>
             <BiColorFill color="#000000" size="20px" />
           </IconButton>
-          <IconButton title="cancel" onClick={handleModal}>
+          <IconButton title="cancel" onClick={edit}>
             <FiX color="#FF0000" size="20px" />
           </IconButton>
           {isForm === false &&
             (isArchived === true ? (
-              <IconButton title="archive">
+              <IconButton title="archive" onClick={edit}>
                 <FiRotateCcw color="#9A7722" size="18px" />
               </IconButton>
             ) : (
@@ -109,7 +153,7 @@ function NoteForm({ id, isArchived, showModal, handleModal, isForm }) {
               </IconButton>
             ))}
 
-          <IconButton title="save" onClick={add}>
+          <IconButton title="save" onClick={isForm === false ? edit : add}>
             <FiCheck color="#43C16B" size="20px" />
           </IconButton>
         </StyledButtonWrapper>

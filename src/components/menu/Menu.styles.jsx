@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledMenu = styled.div`
   display: flex;
+  margin-top: 9px;
   background-color: ${({ theme }) => theme.primary};
 `;
 

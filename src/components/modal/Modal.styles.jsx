@@ -28,7 +28,7 @@ export const StyledModalMain = styled.div`
 export const StyledWrapper = styled.div`
   display: flex;
   place-content: flex-end;
-  margin-bottom: -40px;
+  margin-bottom: -60px;
   margin-right: -33px;
   @media (max-width: 600px) {
     margin-right: 11px;

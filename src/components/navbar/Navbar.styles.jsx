@@ -14,3 +14,7 @@ export const StyledWrapperNavbar = styled.div`
   display: flex;
   margin-top: 10px;
 `;
+
+export const StyledWrapperButton = styled.div`
+  margin-top: 6px;
+`;

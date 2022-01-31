@@ -21,10 +21,11 @@ export const StyledLabel = styled.p`
 `;
 
 export const StyledColor = styled.div`
-  width: 10px;
-  height: 10px;
-  background-color: ${(props) => props.color};
+  width: 15px;
+  height: 15px;
   border-radius: 15px;
+  margin-top: 3px;
+  background-color: ${(props) => props.color};
 `;
 
 export const StyledWrapperColor = styled.div`
@@ -32,4 +33,16 @@ export const StyledWrapperColor = styled.div`
   justify-content: end;
   padding-right: 12px;
   padding-top: 12px;
+`;
+
+export const StyledIconButton = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  z-index: 3;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin-right: 5px;
 `;

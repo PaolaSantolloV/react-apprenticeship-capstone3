@@ -13,12 +13,21 @@ export const StyledIconButton = styled.button`
   margin-right: 5px;
 `;
 
+export const StyledContainerIconButtonBorder = styled.div`
+  border: 1px solid white;
+  border-radius: 24px;
+  justify-content: center;
+  height: 24px;
+  padding: 4px;
+`;
+
 export const StyledLabelIconButton = styled.p`
   font-size: small;
   font-weight: 300;
+  margin-top: 2px;
   color: ${(props) => props.color};
 `;
 
-export const StyledContainerIconButton = styled.h2`
+export const StyledContainerIconButton = styled.div`
   display: inline-flex;
 `;
