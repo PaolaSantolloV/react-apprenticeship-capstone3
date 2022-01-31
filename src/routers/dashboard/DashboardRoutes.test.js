@@ -11,7 +11,18 @@ const contextValue = {
 };
 
 const contextValueGlobal = {
-  allNotes: [
+  activeNotes: [
+    {
+      color: "#0077ff",
+      id: "-Muh0xRHUL46QtpMkmce",
+      note: "notes teste",
+      status: true,
+    },
+  ],
+};
+
+const contextValueGlobalArchive = {
+  archiveNotes: [
     {
       color: "#0077ff",
       id: "-Muh0xRHUL46QtpMkmce",
@@ -50,9 +61,11 @@ describe("<DashboardRoutes />", () => {
   test("should render archived route correctly", () => {
     const { getByTitle } = render(
       <AuthContext.Provider value={contextValue}>
-        <MemoryRouter initialEntries={["/notes/archived"]}>
-          <DashboardRoutes />
-        </MemoryRouter>
+        <GlobalContext.Provider value={contextValueGlobalArchive}>
+          <MemoryRouter initialEntries={["/notes/archived"]}>
+            <DashboardRoutes />
+          </MemoryRouter>
+        </GlobalContext.Provider>
       </AuthContext.Provider>
     );
     const archivedPage = getByTitle("archived");

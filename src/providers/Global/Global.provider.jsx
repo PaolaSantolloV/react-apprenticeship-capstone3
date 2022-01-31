@@ -7,7 +7,8 @@ export const GlobalContext = React.createContext();
 export const GlobalProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [allNotes, setAllNotes] = useState({});
+  const [activeNotes, setActiveNotes] = useState({});
+  const [archiveNotes, setArchiveNotes] = useState({});
 
   const darkMode = () => {
     setIsDark(!isDark);
@@ -16,15 +17,21 @@ export const GlobalProvider = ({ children }) => {
   useEffect(() => {
     useAllNotes()
       .then((data) => {
-        const notes = [];
+        const notesActive = [];
+        const notesArchive = [];
         for (const key in data) {
           const note = {
             id: key,
             ...data[key],
           };
-          notes.push(note);
+          if (data[key].status === true) {
+            notesActive.push(note);
+          } else {
+            notesArchive.push(note);
+          }
         }
-        setAllNotes(notes);
+        setActiveNotes(notesActive);
+        setArchiveNotes(notesArchive);
       })
       .catch(() => {
         setIsError(true);
@@ -32,7 +39,9 @@ export const GlobalProvider = ({ children }) => {
   }, []);
 
   return (
-    <GlobalContext.Provider value={{ isDark, darkMode, isError, allNotes }}>
+    <GlobalContext.Provider
+      value={{ isDark, darkMode, isError, activeNotes, archiveNotes }}
+    >
       {children}
     </GlobalContext.Provider>
   );

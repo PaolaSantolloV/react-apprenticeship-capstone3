@@ -1,13 +1,13 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import NotesPage from "./Notes.page";
 import { GlobalContext } from "../../providers/Global/Global.provider";
+import ArchivedPage from "./Archived.page";
 
 describe("<NotesPage />", () => {
   test("should render all notes correctly", () => {
     const contextValueGlobal = {
-      activeNotes: [
+      archiveNotes: [
         {
           color: "#0077ff",
           id: "-Muh0xRHUL46QtpMkmce",
@@ -18,7 +18,7 @@ describe("<NotesPage />", () => {
     };
     const { getByTitle } = render(
       <GlobalContext.Provider value={contextValueGlobal}>
-        <NotesPage />
+        <ArchivedPage />
       </GlobalContext.Provider>
     );
     const note = getByTitle("-Muh0xRHUL46QtpMkmce");
@@ -27,11 +27,11 @@ describe("<NotesPage />", () => {
 
   test("should no render note card correctly", () => {
     const contextValueGlobal = {
-      activeNotes: [],
+      archiveNotes: [],
     };
     const { getByTitle } = render(
       <GlobalContext.Provider value={contextValueGlobal}>
-        <NotesPage />
+        <ArchivedPage />
       </GlobalContext.Provider>
     );
     const note = getByTitle("no-notes");

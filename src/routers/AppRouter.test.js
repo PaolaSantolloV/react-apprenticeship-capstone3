@@ -6,7 +6,7 @@ import AppRouter from "./AppRouter.component";
 import { GlobalContext } from "../providers/Global/Global.provider";
 
 const contextValueGlobal = {
-  allNotes: [
+  activeNotes: [
     {
       color: "#0077ff",
       id: "-Muh0xRHUL46QtpMkmce",

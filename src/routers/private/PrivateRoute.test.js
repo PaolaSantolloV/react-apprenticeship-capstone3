@@ -18,7 +18,7 @@ describe("<PrivateRoute>", () => {
       authed: true,
     };
     const contextValueGlobal = {
-      allNotes: [
+      activeNotes: [
         {
           color: "#0077ff",
           id: "-Muh0xRHUL46QtpMkmce",

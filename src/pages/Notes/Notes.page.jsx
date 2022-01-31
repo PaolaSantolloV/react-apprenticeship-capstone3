@@ -4,13 +4,18 @@ import IconButton from "../../components/iconButton/IconButton.component";
 import NoteCard from "../../components/noteCard/NoteCard.component";
 import NoteForm from "../../components/noteForm/NoteForm.component";
 import { useGlobalContext } from "../../providers/Global/Global.provider";
-import { StyledWrapperAdd, StyledWrapperNotes } from "./Notes.styles";
+import {
+  StyledWrapperAdd,
+  StyledWrapperNotes,
+  StyledWrapperError,
+  StyledLabelError,
+} from "./Notes.styles";
 
 function NotesPage() {
-  const { allNotes } = useGlobalContext();
+  const { activeNotes } = useGlobalContext();
   const [showModal, setShowModal] = useState(false);
   const handleModal = () => setShowModal(!showModal);
-  console.log(allNotes);
+  console.log(activeNotes);
 
   return (
     <div title="notes">
@@ -27,10 +32,14 @@ function NotesPage() {
       </StyledWrapperAdd>
       <NoteForm handleModal={handleModal} showModal={showModal} />
       <StyledWrapperNotes>
-        {allNotes.length > 0 ? (
-          allNotes.map((note) => <NoteCard key={note.id} {...note} />)
+        {activeNotes.length > 0 ? (
+          activeNotes.map((note) => <NoteCard key={note.id} {...note} />)
         ) : (
-          <h2 title="no-notes">there are no notes, please add a new note</h2>
+          <StyledWrapperError>
+            <StyledLabelError title="no-notes">
+              there are no notes, please add a new note.
+            </StyledLabelError>
+          </StyledWrapperError>
         )}
       </StyledWrapperNotes>
     </div>
