@@ -16,6 +16,7 @@ describe("<PrivateRoute>", () => {
   test("should render the page if authed", () => {
     const contextValue = {
       authed: true,
+      userData: { user: { uid: "kjdhkd" } },
     };
     const contextValueGlobal = {
       activeNotes: [

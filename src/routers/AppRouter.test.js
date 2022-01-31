@@ -33,6 +33,7 @@ describe("<AppRouter>", () => {
   test("sould render notesPage if is authed", () => {
     const contextValue = {
       authed: true,
+      userData: { user: { uid: "kjdhkd" } },
     };
     const { getByTitle } = render(
       <AuthContext.Provider value={contextValue}>

@@ -8,6 +8,7 @@ import { GlobalContext } from "../../providers/Global/Global.provider";
 
 const contextValue = {
   authed: true,
+  userData: { user: { uid: "kjdhkd" } },
 };
 
 const contextValueGlobal = {
@@ -19,6 +20,7 @@ const contextValueGlobal = {
       status: true,
     },
   ],
+  isDark: false,
 };
 
 const contextValueGlobalArchive = {
@@ -30,15 +32,18 @@ const contextValueGlobalArchive = {
       status: true,
     },
   ],
+  isDark: false,
 };
 
 describe("<DashboardRoutes />", () => {
   test("should render dashboard correctly", () => {
     const { container } = render(
       <AuthContext.Provider value={contextValue}>
-        <MemoryRouter>
-          <DashboardRoutes />
-        </MemoryRouter>
+        <GlobalContext.Provider value={contextValueGlobal}>
+          <MemoryRouter>
+            <DashboardRoutes />
+          </MemoryRouter>
+        </GlobalContext.Provider>
       </AuthContext.Provider>
     );
     expect(container).toBeValid();

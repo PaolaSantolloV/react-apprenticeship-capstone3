@@ -3,18 +3,25 @@ import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Navbar from "./Navbar.component";
 import { AuthContext } from "../../providers/Auth/Auth.provider";
+import { GlobalContext } from "../../providers/Global/Global.provider";
 
 // const onClick = jest.fn();
 // const onChange = jest.fn();
 const contextValue = {
   authed: true,
+  userData: { user: { uid: "kjdhkd" } },
+};
+const contextValueGlobal = {
+  isDark: false,
 };
 
 describe("navbar", () => {
   test("should render the navbar element correctly", () => {
     const { getByTitle } = render(
       <AuthContext.Provider value={contextValue}>
-        <Navbar />
+        <GlobalContext.Provider value={contextValueGlobal}>
+          <Navbar />
+        </GlobalContext.Provider>
       </AuthContext.Provider>
     );
     const nav = getByTitle("navbar");

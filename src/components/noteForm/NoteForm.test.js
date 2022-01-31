@@ -3,16 +3,23 @@ import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import NoteForm from "./NoteForm.component";
 import { GlobalContext } from "../../providers/Global/Global.provider";
+import { AuthContext } from "../../providers/Auth/Auth.provider";
 
 describe("<NoteForm/>", () => {
   test("should render the noteForm correctly", () => {
     const contextValue = {
       loading: jest.fn(),
     };
+    const contextValueAuth = {
+      authed: true,
+      userData: { user: { uid: "kjdhkd" } },
+    };
     const { getByTitle } = render(
-      <GlobalContext.Provider value={contextValue}>
-        <NoteForm isArchived={false} />
-      </GlobalContext.Provider>
+      <AuthContext.Provider value={contextValueAuth}>
+        <GlobalContext.Provider value={contextValue}>
+          <NoteForm isArchived={false} />
+        </GlobalContext.Provider>
+      </AuthContext.Provider>
     );
     const card = getByTitle("note-form");
 
@@ -39,10 +46,16 @@ describe("<NoteForm/>", () => {
     const contextValue = {
       loading: jest.fn(),
     };
+    const contextValueAuth = {
+      authed: true,
+      userData: { user: { uid: "kjdhkd" } },
+    };
     const { getByTitle } = render(
-      <GlobalContext value={contextValue}>
-        <NoteForm isArchived={true} />
-      </GlobalContext>
+      <AuthContext.Provider value={contextValueAuth}>
+        <GlobalContext.Provider value={contextValue}>
+          <NoteForm isArchived={true} />
+        </GlobalContext.Provider>
+      </AuthContext.Provider>
     );
     const card = getByTitle("note-form");
 
@@ -55,15 +68,11 @@ describe("<NoteForm/>", () => {
     const cancel = getByTitle("cancel");
     fireEvent.click(cancel);
 
-    const restore = getByTitle("restore");
-    fireEvent.click(restore);
-
     const save = getByTitle("save");
     fireEvent.click(save);
 
     expect(cancel).toBeInTheDocument();
     expect(color).toBeInTheDocument();
-    expect(restore).toBeInTheDocument();
     expect(save).toBeInTheDocument();
     expect(card).toBeInTheDocument();
     expect(inputDescription).toBeInTheDocument();
@@ -74,7 +83,21 @@ describe("<NoteForm/>", () => {
     const useShowModal = jest.spyOn(React, "useState");
     useShowModal.mockImplementation([false, setShowModal]);
 
-    const { getByTitle } = render(<NoteForm isArchived={true} show={true} />);
+    const contextValue = {
+      loading: jest.fn(),
+    };
+    const contextValueAuth = {
+      authed: true,
+      userData: { user: { uid: "kjdhkd" } },
+    };
+
+    const { getByTitle } = render(
+      <AuthContext.Provider value={contextValueAuth}>
+        <GlobalContext.Provider value={contextValue}>
+          <NoteForm isArchived={true} show={true} />
+        </GlobalContext.Provider>
+      </AuthContext.Provider>
+    );
     const modal = getByTitle("modal-note");
     expect(modal).toBeInTheDocument();
   });
