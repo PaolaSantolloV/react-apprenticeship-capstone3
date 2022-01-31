@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledContainer = styled.div`
-  margin-bottom: 100%;
+  margin-bottom: 200%;
 `;
 
 export const StyledFormContainer = styled.div`
@@ -14,6 +14,11 @@ export const StyledFormContainer = styled.div`
   top: 25%;
   left: 20%;
   padding: 30px;
+
+  @media (max-width: 600px) {
+    top: 10%;
+    left: 12%;
+  }
 }
 `;
 

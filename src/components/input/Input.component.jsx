@@ -1,8 +1,17 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { StyledInput, StyledLabelInput } from "./Input.styles";
 
-// eslint-disable-next-line react/prop-types
-function Input({ label, placeholder, type, id, onChange, value, title }) {
+function Input({
+  label,
+  placeholder,
+  type,
+  id,
+  onChange,
+  value,
+  title,
+  border,
+}) {
   return (
     <>
       {label && <StyledLabelInput>{label}</StyledLabelInput>}
@@ -14,9 +23,14 @@ function Input({ label, placeholder, type, id, onChange, value, title }) {
         onChange={onChange}
         value={value}
         title={title}
+        border={border}
       />
     </>
   );
 }
+
+Input.defaultProps = {
+  border: "#f2f2f2",
+};
 
 export default Input;

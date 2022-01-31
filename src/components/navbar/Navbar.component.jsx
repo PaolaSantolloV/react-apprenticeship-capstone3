@@ -1,22 +1,21 @@
 import React from "react";
-// import Input from "../input/Input.component";
-// import Button from "../button/Button.component";
+import Input from "../input/Input.component";
 import Menu from "../menu/Menu.component";
-import { StyledNavbarContainer } from "./Navbar.styles";
+import { StyledNavbarContainer, StyledWrapperNavbar } from "./Navbar.styles";
 
 // eslint-disable-next-line react/prop-types
 function Navbar() {
   return (
     <StyledNavbarContainer title="navbar">
       <Menu />
-      {/* <Input
-        placeholder="Search"
-        type="text"
-        onChange={onChange}
-        value={value}
-        title="search"
-      />
-      <Button title="button-search" label="Search" onClick={onClick} /> */}
+      <StyledWrapperNavbar>
+        <Input
+          placeholder="Search"
+          type="text"
+          title="search"
+          border="transparent"
+        />
+      </StyledWrapperNavbar>
     </StyledNavbarContainer>
   );
 }

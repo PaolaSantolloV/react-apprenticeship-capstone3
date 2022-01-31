@@ -30,7 +30,12 @@ function NotesPage() {
           <FiPlus color="#858ae3" size="20px" />
         </IconButton>
       </StyledWrapperAdd>
-      <NoteForm handleModal={handleModal} showModal={showModal} />
+      <NoteForm
+        handleModal={handleModal}
+        showModal={showModal}
+        isForm
+        isArchived={false}
+      />
       <StyledWrapperNotes>
         {activeNotes.length > 0 ? (
           activeNotes.map((note) => <NoteCard key={note.id} {...note} />)

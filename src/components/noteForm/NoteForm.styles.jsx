@@ -9,6 +9,10 @@ export const StyledFormNoteContainer = styled.div`
   flex-direction: column;
   padding: 20px;
   padding-top: 35px;
+
+  @media (max-width: 600px) {
+    width: 300px;
+  }
 `;
 
 export const StyledTextarea = styled.textarea`

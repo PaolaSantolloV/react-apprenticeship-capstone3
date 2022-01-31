@@ -26,6 +26,14 @@ export const StyledMenuItemContainer = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   color: #ffffff;
+
+  @media (max-width: 600px) {
+    width: 40%;
+  }
+
+  @media (max-width: 375px) {
+    width: 100%;
+  }
 `;
 
 export const StyledLabel = styled.h2`

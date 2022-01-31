@@ -19,9 +19,8 @@ export const StyledModalMain = styled.div`
   width: auto;
   top: 50%;
   left: 50%;
-  margin-right: -33px;
   transform: translate(-50%, -50%);
-  @media (max-width: 545px) {
+  @media (max-width: 600px) {
     top: 40%;
   }
 `;
@@ -31,4 +30,7 @@ export const StyledWrapper = styled.div`
   place-content: flex-end;
   margin-bottom: -40px;
   margin-right: -33px;
+  @media (max-width: 600px) {
+    margin-right: 11px;
+  }
 `;

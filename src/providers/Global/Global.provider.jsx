@@ -7,11 +7,16 @@ export const GlobalContext = React.createContext();
 export const GlobalProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [activeNotes, setActiveNotes] = useState({});
   const [archiveNotes, setArchiveNotes] = useState({});
 
   const darkMode = () => {
     setIsDark(!isDark);
+  };
+
+  const loading = (value) => {
+    setIsLoading(value);
   };
 
   useEffect(() => {
@@ -36,11 +41,19 @@ export const GlobalProvider = ({ children }) => {
       .catch(() => {
         setIsError(true);
       });
-  }, []);
+  }, [isLoading]);
 
   return (
     <GlobalContext.Provider
-      value={{ isDark, darkMode, isError, activeNotes, archiveNotes }}
+      value={{
+        isDark,
+        darkMode,
+        isError,
+        activeNotes,
+        archiveNotes,
+        isLoading,
+        loading,
+      }}
     >
       {children}
     </GlobalContext.Provider>

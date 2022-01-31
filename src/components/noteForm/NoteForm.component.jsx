@@ -12,9 +12,11 @@ import {
   StyledLabelError,
 } from "./NoteForm.styles";
 import { useAddNote } from "../../hooks/useAddNote";
+import { useGlobalContext } from "../../providers/Global/Global.provider";
 
 // eslint-disable-next-line react/prop-types
-function NoteForm({ id, isArchived, showModal, handleModal }) {
+function NoteForm({ id, isArchived, showModal, handleModal, isForm }) {
+  const { loading } = useGlobalContext();
   const [showSelectColor, setShowSelectColor] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -49,7 +51,9 @@ function NoteForm({ id, isArchived, showModal, handleModal }) {
   const add = async () => {
     useAddNote(noteData)
       .then(() => {
+        loading(true);
         handleModal();
+        loading(false);
       })
       .catch(() => {
         setIsError(true);
@@ -85,44 +89,24 @@ function NoteForm({ id, isArchived, showModal, handleModal }) {
           </StyledColorWrapper>
         )}
         <StyledButtonWrapper>
-          <IconButton
-            backgroundColor="transparent"
-            border="transparent"
-            title="color"
-            onClick={handleShowSelectColor}
-          >
+          <IconButton title="color" onClick={handleShowSelectColor}>
             <BiColorFill color="#000000" size="20px" />
           </IconButton>
-          <IconButton
-            backgroundColor="transparent"
-            border="transparent"
-            title="cancel"
-          >
+          <IconButton title="cancel" onClick={handleModal}>
             <FiX color="#FF0000" size="20px" />
           </IconButton>
-          {isArchived === false ? (
-            <IconButton
-              backgroundColor="transparent"
-              border="transparent"
-              title="archive"
-            >
-              <FiTrash color="#43C16B" size="20px" />
-            </IconButton>
-          ) : (
-            <IconButton
-              backgroundColor="transparent"
-              border="transparent"
-              title="restore"
-            >
-              <FiRotateCcw color="#9A7722" size="20px" />
-            </IconButton>
-          )}
-          <IconButton
-            backgroundColor="transparent"
-            border="transparent"
-            title="save"
-            onClick={add}
-          >
+          {isForm === false &&
+            (isArchived === true ? (
+              <IconButton title="archive">
+                <FiRotateCcw color="#9A7722" size="18px" />
+              </IconButton>
+            ) : (
+              <IconButton title="restore">
+                <FiTrash color="#9A7722" size="18px" />
+              </IconButton>
+            ))}
+
+          <IconButton title="save" onClick={add}>
             <FiCheck color="#43C16B" size="20px" />
           </IconButton>
         </StyledButtonWrapper>

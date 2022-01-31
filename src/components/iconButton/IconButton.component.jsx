@@ -33,4 +33,8 @@ function IconButton({
   );
 }
 
+IconButton.defaultProps = {
+  border: "transparent",
+  backgroundColor: "transparent",
+};
 export default IconButton;

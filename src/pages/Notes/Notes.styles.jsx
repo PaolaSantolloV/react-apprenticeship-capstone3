@@ -9,6 +9,10 @@ export const StyledWrapperNotes = styled.div`
   display: -webkit-inline-box;
   flex-flow: row wrap;
   display: inline-flex;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
 `;
 
 export const StyledWrapperError = styled.div`

@@ -2,10 +2,18 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import NoteForm from "./NoteForm.component";
+import { GlobalContext } from "../../providers/Global/Global.provider";
 
 describe("<NoteForm/>", () => {
   test("should render the noteForm correctly", () => {
-    const { getByTitle } = render(<NoteForm isArchived={false} />);
+    const contextValue = {
+      loading: jest.fn(),
+    };
+    const { getByTitle } = render(
+      <GlobalContext.Provider value={contextValue}>
+        <NoteForm isArchived={false} />
+      </GlobalContext.Provider>
+    );
     const card = getByTitle("note-form");
 
     const inputDescription = getByTitle("description-note");
@@ -17,22 +25,25 @@ describe("<NoteForm/>", () => {
     const cancel = getByTitle("cancel");
     fireEvent.click(cancel);
 
-    const archive = getByTitle("archive");
-    fireEvent.click(archive);
-
     const save = getByTitle("save");
     fireEvent.click(save);
 
     expect(cancel).toBeInTheDocument();
     expect(color).toBeInTheDocument();
-    expect(archive).toBeInTheDocument();
     expect(save).toBeInTheDocument();
     expect(inputDescription).toBeInTheDocument();
     expect(card).toBeInTheDocument();
   });
 
   test("should render a archived noteCard correctly", () => {
-    const { getByTitle } = render(<NoteForm isArchived={true} />);
+    const contextValue = {
+      loading: jest.fn(),
+    };
+    const { getByTitle } = render(
+      <GlobalContext value={contextValue}>
+        <NoteForm isArchived={true} />
+      </GlobalContext>
+    );
     const card = getByTitle("note-form");
 
     const inputDescription = getByTitle("description-note");
