@@ -6,11 +6,12 @@ export const StyledInput = styled.input`
   border-color: ${(props) => props.border};
   border-radius: 5px;
   border-style: solid;
-  color: #613dc1;
+  color: ${({ theme }) => theme.textWhite};
   outline: none;
+  background-color: transparent;
 
   :placeholder {
-    color: #e9e9e9;
+    color: ${({ theme }) => theme.textWhite};
   }
 
   :focus-visible {

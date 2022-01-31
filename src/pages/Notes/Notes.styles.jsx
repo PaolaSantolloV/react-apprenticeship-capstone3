@@ -24,5 +24,5 @@ export const StyledWrapperError = styled.div`
 export const StyledLabelError = styled.h2`
   font-size: medium;
   font-weight: 200;
-  color: #613dc1;
+  color: ${({ theme }) => theme.text};
 `;

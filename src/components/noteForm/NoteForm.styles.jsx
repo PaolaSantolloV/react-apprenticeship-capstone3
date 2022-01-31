@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledFormNoteContainer = styled.div`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.body};
   border-radius: 2px;
   width: 100%;
   height: 200px;
@@ -17,19 +17,13 @@ export const StyledFormNoteContainer = styled.div`
 
 export const StyledTextarea = styled.textarea`
   padding-left: 5px;
-  border: 2px solid;
-  border-color: #f2f2f2;
-  border-radius: 5px;
-  border-style: solid;
+  border: none;
   color: #613dc1;
   outline: none;
+  background-color: ${({ theme }) => theme.body};
 
   :placeholder {
-    color: #e9e9e9;
-  }
-
-  :focus-visible {
-    border-color: #613dc1;
+    color: ${({ theme }) => theme.shadow};
   }
 `;
 

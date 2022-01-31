@@ -12,10 +12,12 @@ import {
 } from "./Menu.styles";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../providers/Auth/Auth.provider";
+import { useGlobalContext } from "../../providers/Global/Global.provider";
 
 // eslint-disable-next-line react/prop-types
 function Menu() {
   const { logout } = useAuthContext();
+  const { isDark, darkMode } = useGlobalContext();
   const [showMenu, setShowMenu] = useState(false);
 
   const handleMenu = () => setShowMenu(!showMenu);
@@ -33,7 +35,7 @@ function Menu() {
           border="transparent"
           onClick={handleMenu}
         >
-          <FiMenu color="#613dc1" size="30px" />
+          <FiMenu color="#ffffff" size="30px" />
         </IconButton>
       )}
       {showMenu === true && (
@@ -47,7 +49,7 @@ function Menu() {
           </IconButton>
           <StyledLabel>UserInfo</StyledLabel>
           <Divider />
-          <Switch label="Dark mode" />
+          <Switch label="Dark mode" isOn={isDark} handleToggle={darkMode} />
           <Divider />
           <Link
             to="/notes"

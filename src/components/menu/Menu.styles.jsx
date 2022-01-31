@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledMenu = styled.div`
   display: flex;
+  background-color: ${({ theme }) => theme.primary};
 `;
 
 export const StyledIconButton = styled.button`
@@ -14,7 +15,7 @@ export const StyledIconButton = styled.button`
 export const StyledMenuItemContainer = styled.div`
   top: 0;
   margin-left: -15px;
-  background-color: #858ae3;
+  background-color: ${({ theme }) => theme.primary};
   position: absolute;
   width: 25%;
   padding-top: 5px;
@@ -46,7 +47,7 @@ export const StyledLabel = styled.h2`
 `;
 
 export const Divider = styled.hr`
-  border-color: #858ae3;
+  border-color: ${({ theme }) => theme.primary};
 `;
 
 export const Icon = styled.p`

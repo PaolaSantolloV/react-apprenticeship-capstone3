@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const StyledNoteContainer = styled.div`
-  background-color: white;
+  background-color: ${({ theme }) => theme.card};
   width: 150px;
   border-radius: 2px;
   height: 150px;
-  box-shadow: 0px 0px 15px 1px #e9e9e9;
+  box-shadow: 0px 0px 15px 1px ${({ theme }) => theme.shadow};
   margin: 10px;
 `;
 
@@ -17,7 +17,7 @@ export const StyledLabel = styled.p`
   text-align: justify;
   font-size: small;
   font-weight: 100;
-  color: #212121;
+  color: ${({ theme }) => theme.text};
 `;
 
 export const StyledColor = styled.div`
