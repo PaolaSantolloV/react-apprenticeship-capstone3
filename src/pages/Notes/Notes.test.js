@@ -17,6 +17,7 @@ describe("<NotesPage />", () => {
           status: true,
         },
       ],
+      getNotes: jest.fn(),
     };
     const contextValueAuth = {
       userData: { user: { uid: "kjdhkd" } },
@@ -36,6 +37,7 @@ describe("<NotesPage />", () => {
     const contextValueGlobal = {
       activeNotes: [],
       searchTerm: "",
+      getNotes: jest.fn(),
     };
     const contextValueAuth = {
       userData: { user: { uid: "kjdhkd" } },

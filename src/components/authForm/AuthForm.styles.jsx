@@ -1,7 +1,22 @@
 import styled from "styled-components";
 
 export const StyledContainer = styled.div`
-  margin-bottom: 200%;
+  margin-bottom: 100%;
+
+  @media (max-width: 900px) {
+    margin-bottom: 140%;
+  }
+
+  @media (max-width: 750px) {
+    margin-bottom: 160%;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 180%;
+  }
+  @media (max-width: 400px) {
+    margin-bottom: 200%;
+  }
 `;
 
 export const StyledFormContainer = styled.div`

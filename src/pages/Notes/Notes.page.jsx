@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import IconButton from "../../components/iconButton/IconButton.component";
 import NoteCard from "../../components/noteCard/NoteCard.component";
@@ -12,13 +12,20 @@ import {
 } from "./Notes.styles";
 
 function NotesPage() {
-  const { activeNotes, isLoading, searchTerm } = useGlobalContext();
+  const { activeNotes, isLoading, searchTerm, getNotes } = useGlobalContext();
   const [showModal, setShowModal] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [noteDataEdit, setNoteDateEdit] = useState({});
 
   const handleModal = () => setShowModal(!showModal);
   const handleModalEdit = () => setShowModalEdit(!showModalEdit);
+  function handleDataEdit(data) {
+    setNoteDateEdit(data);
+  }
+
+  useEffect(() => {
+    getNotes();
+  }, []);
 
   return (
     <div title="notes">
@@ -40,13 +47,16 @@ function NotesPage() {
         isForm
         isArchived={false}
       />
-      <NoteForm
-        handleModal={handleModalEdit}
-        showModal={showModalEdit}
-        isForm={false}
-        isArchived={false}
-        noteDataEdit={noteDataEdit}
-      />
+      {noteDataEdit !== undefined && (
+        <NoteForm
+          handleModal={handleModalEdit}
+          showModal={showModalEdit}
+          isForm={false}
+          isArchived={false}
+          noteDataEdit={noteDataEdit}
+        />
+      )}
+
       <StyledWrapperNotes>
         {searchTerm.length > 0 ? (
           activeNotes
@@ -54,7 +64,7 @@ function NotesPage() {
             .map((note) => (
               <NoteCard
                 onClick={() => {
-                  setNoteDateEdit(note), handleModalEdit();
+                  handleDataEdit(note), handleModalEdit();
                 }}
                 key={note.id}
                 {...note}
@@ -63,9 +73,7 @@ function NotesPage() {
         ) : activeNotes.length > 0 ? (
           activeNotes.map((note) => (
             <NoteCard
-              onClick={() => {
-                setNoteDateEdit(note), handleModalEdit();
-              }}
+              onClick={() => (handleDataEdit(note), handleModalEdit())}
               key={note.id}
               {...note}
             />

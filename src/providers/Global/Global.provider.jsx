@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useAllNotes } from "../../hooks/useAllNotes";
 import { useAuthContext } from "../Auth/Auth.provider";
 
@@ -18,8 +18,7 @@ export const GlobalProvider = ({ children }) => {
     setIsDark(!isDark);
   };
 
-  useEffect(() => {
-    console.log("ok");
+  const getNotes = async () => {
     useAllNotes()
       .then((data) => {
         setIsLoading(true);
@@ -47,11 +46,10 @@ export const GlobalProvider = ({ children }) => {
         setIsLoading(false);
       })
       .catch(() => {
-        console.log("err");
         setIsError(true);
         setIsLoading(false);
       });
-  }, []);
+  };
 
   const search = (term) => {
     setSearchTerm(term);
@@ -69,6 +67,7 @@ export const GlobalProvider = ({ children }) => {
         setIsLoading,
         search,
         searchTerm,
+        getNotes,
       }}
     >
       {children}

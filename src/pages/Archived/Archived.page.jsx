@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NoteCard from "../../components/noteCard/NoteCard.component";
 import NoteForm from "../../components/noteForm/NoteForm.component";
 import { useGlobalContext } from "../../providers/Global/Global.provider";
@@ -9,11 +9,15 @@ import {
 } from "./Archived.styles";
 
 function ArchivedPage() {
-  const { archiveNotes, searchTerm, isLoading } = useGlobalContext();
+  const { archiveNotes, searchTerm, isLoading, getNotes } = useGlobalContext();
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [noteDataEdit, setNoteDateEdit] = useState({});
 
   const handleModalEdit = () => setShowModalEdit(!showModalEdit);
+
+  useEffect(() => {
+    getNotes();
+  }, []);
 
   return (
     <div title="archived">

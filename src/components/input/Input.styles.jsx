@@ -10,11 +10,11 @@ export const StyledInput = styled.input`
   outline: none;
   background-color: transparent;
 
-  :placeholder {
+  ::placeholder {
     color: ${({ theme }) => theme.textWhite};
   }
 
-  :focus-visible {
+  ::focus-visible {
     border-color: #613dc1;
   }
 `;

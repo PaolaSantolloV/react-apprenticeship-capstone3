@@ -15,6 +15,7 @@ const contextValueGlobal = {
     },
   ],
   searchTerm: "",
+  getNotes: jest.fn(),
 };
 
 describe("<AppRouter>", () => {

@@ -3,8 +3,13 @@ import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { GlobalContext } from "../../providers/Global/Global.provider";
 import ArchivedPage from "./Archived.page";
+import { AuthContext } from "../../providers/Auth/Auth.provider";
 
-describe("<NotesPage />", () => {
+const contextValueAuth = {
+  userData: { user: { uid: "kjdhkd" } },
+};
+
+describe("<ArchivedPage />", () => {
   test("should render all notes correctly", () => {
     const contextValueGlobal = {
       archiveNotes: [
@@ -15,11 +20,15 @@ describe("<NotesPage />", () => {
           status: true,
         },
       ],
+      getNotes: jest.fn(),
+      searchTerm: "",
     };
     const { getByTitle } = render(
-      <GlobalContext.Provider value={contextValueGlobal}>
-        <ArchivedPage />
-      </GlobalContext.Provider>
+      <AuthContext.Provider value={contextValueAuth}>
+        <GlobalContext.Provider value={contextValueGlobal}>
+          <ArchivedPage />
+        </GlobalContext.Provider>
+      </AuthContext.Provider>
     );
     const note = getByTitle("-Muh0xRHUL46QtpMkmce");
     expect(note).toBeInTheDocument();
@@ -28,11 +37,15 @@ describe("<NotesPage />", () => {
   test("should no render note card correctly", () => {
     const contextValueGlobal = {
       archiveNotes: [],
+      getNotes: jest.fn(),
+      searchTerm: "",
     };
     const { getByTitle } = render(
-      <GlobalContext.Provider value={contextValueGlobal}>
-        <ArchivedPage />
-      </GlobalContext.Provider>
+      <AuthContext.Provider value={contextValueAuth}>
+        <GlobalContext.Provider value={contextValueGlobal}>
+          <ArchivedPage />
+        </GlobalContext.Provider>
+      </AuthContext.Provider>
     );
     const note = getByTitle("no-notes");
     expect(note).toBeInTheDocument();

@@ -13,8 +13,14 @@ function LoginPage() {
   const onSubmitLogin = async (email, password) => {
     useLogin(email, password)
       .then((result) => {
-        login(result);
-        navigate("/notes");
+        if (result.operationType === "signIn") {
+          setIsError(false);
+          login(result);
+          navigate("/notes");
+        } else if (result.error.code === 400) {
+          console.log("ok");
+          setIsError(true);
+        }
       })
       .catch(() => {
         setIsError(true);

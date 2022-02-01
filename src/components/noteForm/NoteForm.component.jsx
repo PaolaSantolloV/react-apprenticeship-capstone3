@@ -25,7 +25,7 @@ function NoteForm({
   isForm,
   noteDataEdit,
 }) {
-  const { setIsLoading } = useGlobalContext();
+  const { setIsLoading, getNotes } = useGlobalContext();
   const { userData } = useAuthContext();
   const [showSelectColor, setShowSelectColor] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -36,7 +36,14 @@ function NoteForm({
   console.log(noteDataEdit);
   const [noteData, setNoteData] = useState(
     noteDataEdit
-      ? noteDataEdit
+      ? noteDataEdit === undefined
+        ? {
+            note: "",
+            color: "#fff",
+            status: true,
+            idUser: userData.user.uid,
+          }
+        : noteDataEdit
       : {
           note: "",
           color: "#fff",
@@ -70,6 +77,7 @@ function NoteForm({
       .then(() => {
         setIsLoading(true);
         handleModal();
+        getNotes();
         setIsLoading(false);
       })
       .catch(() => {
@@ -83,6 +91,7 @@ function NoteForm({
         setIsLoading(true);
         handleModal();
         setIsLoading(false);
+        getNotes();
       })
       .catch(() => {
         setIsError(true);
@@ -90,7 +99,6 @@ function NoteForm({
   };
 
   const archive = async () => {
-    console.log("arch");
     const data = {
       note: noteDataEdit.note,
       color: noteDataEdit.color,
@@ -100,6 +108,7 @@ function NoteForm({
     console.log(data);
     useEditNote(noteDataEdit.id, data)
       .then(() => {
+        getNotes();
         setIsLoading(true);
         handleModal();
         setIsLoading(false);
@@ -121,6 +130,7 @@ function NoteForm({
         setIsLoading(true);
         handleModal();
         setIsLoading(false);
+        getNotes();
       })
       .catch(() => {
         setIsError(true);

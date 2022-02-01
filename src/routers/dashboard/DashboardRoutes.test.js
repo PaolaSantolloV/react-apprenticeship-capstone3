@@ -22,6 +22,7 @@ const contextValueGlobal = {
   ],
   isDark: false,
   searchTerm: "",
+  getNotes: jest.fn(),
 };
 
 const contextValueGlobalArchive = {
@@ -35,6 +36,7 @@ const contextValueGlobalArchive = {
   ],
   isDark: false,
   searchTerm: "",
+  getNotes: jest.fn(),
 };
 
 describe("<DashboardRoutes />", () => {

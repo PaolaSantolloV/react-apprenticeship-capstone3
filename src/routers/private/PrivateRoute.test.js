@@ -28,6 +28,7 @@ describe("<PrivateRoute>", () => {
         },
       ],
       searchTerm: "",
+      getNotes: jest.fn(),
     };
     const { getByTitle } = render(
       <AuthContext.Provider value={contextValue}>
