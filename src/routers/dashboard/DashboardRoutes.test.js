@@ -21,6 +21,7 @@ const contextValueGlobal = {
     },
   ],
   isDark: false,
+  searchTerm: "",
 };
 
 const contextValueGlobalArchive = {
@@ -33,6 +34,7 @@ const contextValueGlobalArchive = {
     },
   ],
   isDark: false,
+  searchTerm: "",
 };
 
 describe("<DashboardRoutes />", () => {

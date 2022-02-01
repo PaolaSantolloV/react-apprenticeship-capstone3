@@ -14,6 +14,7 @@ const contextValueGlobal = {
       status: true,
     },
   ],
+  searchTerm: "",
 };
 
 describe("<AppRouter>", () => {

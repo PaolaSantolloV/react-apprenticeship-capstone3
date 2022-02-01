@@ -33,16 +33,10 @@ function NoteForm({
     background: "#fff",
   });
 
-  console.log("edi", noteDataEdit);
-
+  console.log(noteDataEdit);
   const [noteData, setNoteData] = useState(
     noteDataEdit
-      ? {
-          note: noteDataEdit.note,
-          color: noteDataEdit.color,
-          status: noteDataEdit.status,
-          idUser: userData.user.uid,
-        }
+      ? noteDataEdit
       : {
           note: "",
           color: "#fff",
@@ -77,12 +71,6 @@ function NoteForm({
         setIsLoading(true);
         handleModal();
         setIsLoading(false);
-        // setNoteData({
-        //   note: "",
-        //   color: "#fff",
-        //   status: true,
-        //   idUser: userData.user.uid,
-        // });
       })
       .catch(() => {
         setIsError(true);
@@ -95,12 +83,44 @@ function NoteForm({
         setIsLoading(true);
         handleModal();
         setIsLoading(false);
-        // setNoteData({
-        //   note: "",
-        //   color: "#fff",
-        //   status: true,
-        //   idUser: userData.user.uid,
-        // });
+      })
+      .catch(() => {
+        setIsError(true);
+      });
+  };
+
+  const archive = async () => {
+    console.log("arch");
+    const data = {
+      note: noteDataEdit.note,
+      color: noteDataEdit.color,
+      status: false,
+      idUser: userData.user.uid,
+    };
+    console.log(data);
+    useEditNote(noteDataEdit.id, data)
+      .then(() => {
+        setIsLoading(true);
+        handleModal();
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setIsError(true);
+      });
+  };
+
+  const restaure = async () => {
+    const data = {
+      note: noteDataEdit.note,
+      color: noteDataEdit.color,
+      status: true,
+      idUser: userData.user.uid,
+    };
+    useEditNote(noteDataEdit.id, data)
+      .then(() => {
+        setIsLoading(true);
+        handleModal();
+        setIsLoading(false);
       })
       .catch(() => {
         setIsError(true);
@@ -139,16 +159,16 @@ function NoteForm({
           <IconButton title="color" onClick={handleShowSelectColor}>
             <BiColorFill color="#000000" size="20px" />
           </IconButton>
-          <IconButton title="cancel" onClick={edit}>
+          <IconButton title="cancel" onClick={handleModal}>
             <FiX color="#FF0000" size="20px" />
           </IconButton>
           {isForm === false &&
             (isArchived === true ? (
-              <IconButton title="archive" onClick={edit}>
+              <IconButton title="archive" onClick={restaure}>
                 <FiRotateCcw color="#9A7722" size="18px" />
               </IconButton>
             ) : (
-              <IconButton title="restore">
+              <IconButton title="restore" onClick={archive}>
                 <FiTrash color="#9A7722" size="18px" />
               </IconButton>
             ))}

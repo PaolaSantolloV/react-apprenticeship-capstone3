@@ -10,6 +10,7 @@ export const GlobalProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const [activeNotes, setActiveNotes] = useState({});
   const [archiveNotes, setArchiveNotes] = useState({});
 
@@ -46,10 +47,15 @@ export const GlobalProvider = ({ children }) => {
         setIsLoading(false);
       })
       .catch(() => {
+        console.log("err");
         setIsError(true);
         setIsLoading(false);
       });
   }, []);
+
+  const search = (term) => {
+    setSearchTerm(term);
+  };
 
   return (
     <GlobalContext.Provider
@@ -61,6 +67,8 @@ export const GlobalProvider = ({ children }) => {
         archiveNotes,
         isLoading,
         setIsLoading,
+        search,
+        searchTerm,
       }}
     >
       {children}

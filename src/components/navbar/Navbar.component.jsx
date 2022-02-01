@@ -1,16 +1,19 @@
-import React from "react";
-import { BiSearchAlt } from "react-icons/bi";
+import React, { useState } from "react";
 import Input from "../input/Input.component";
 import Menu from "../menu/Menu.component";
-import {
-  StyledNavbarContainer,
-  StyledWrapperButton,
-  StyledWrapperNavbar,
-} from "./Navbar.styles";
-import IconButton from "../iconButton/IconButton.component";
+import { StyledNavbarContainer, StyledWrapperNavbar } from "./Navbar.styles";
+import { useGlobalContext } from "../../providers/Global/Global.provider";
 
 // eslint-disable-next-line react/prop-types
 function Navbar() {
+  const { search } = useGlobalContext();
+  const [inputValue, setInputValue] = useState("");
+
+  const handleChange = (event) => {
+    setInputValue(event.currentTarget.value);
+    search(event.currentTarget.value);
+  };
+
   return (
     <StyledNavbarContainer title="navbar">
       <Menu />
@@ -19,13 +22,10 @@ function Navbar() {
           placeholder="Search"
           type="text"
           title="search"
-          border="transparent"
+          border="#ffffff"
+          onChange={(event) => handleChange(event)}
+          value={inputValue}
         />
-        <StyledWrapperButton>
-          <IconButton title="search" text="Search" textColor="#ffffff">
-            <BiSearchAlt color="#ffffff" size="20px" />
-          </IconButton>
-        </StyledWrapperButton>
       </StyledWrapperNavbar>
     </StyledNavbarContainer>
   );

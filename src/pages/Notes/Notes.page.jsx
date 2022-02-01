@@ -12,7 +12,7 @@ import {
 } from "./Notes.styles";
 
 function NotesPage() {
-  const { activeNotes, isLoading } = useGlobalContext();
+  const { activeNotes, isLoading, searchTerm } = useGlobalContext();
   const [showModal, setShowModal] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [noteDataEdit, setNoteDateEdit] = useState({});
@@ -48,7 +48,19 @@ function NotesPage() {
         noteDataEdit={noteDataEdit}
       />
       <StyledWrapperNotes>
-        {activeNotes.length > 0 ? (
+        {searchTerm.length > 0 ? (
+          activeNotes
+            .filter((note) => note.note.includes(searchTerm))
+            .map((note) => (
+              <NoteCard
+                onClick={() => {
+                  setNoteDateEdit(note), handleModalEdit();
+                }}
+                key={note.id}
+                {...note}
+              />
+            ))
+        ) : activeNotes.length > 0 ? (
           activeNotes.map((note) => (
             <NoteCard
               onClick={() => {

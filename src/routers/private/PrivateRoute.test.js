@@ -27,6 +27,7 @@ describe("<PrivateRoute>", () => {
           status: true,
         },
       ],
+      searchTerm: "",
     };
     const { getByTitle } = render(
       <AuthContext.Provider value={contextValue}>

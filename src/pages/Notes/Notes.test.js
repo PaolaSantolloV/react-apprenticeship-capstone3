@@ -8,6 +8,7 @@ import { AuthContext } from "../../providers/Auth/Auth.provider";
 describe("<NotesPage />", () => {
   test("should render all notes correctly", () => {
     const contextValueGlobal = {
+      searchTerm: "",
       activeNotes: [
         {
           color: "#0077ff",
@@ -34,6 +35,7 @@ describe("<NotesPage />", () => {
   test("should no render note card correctly", () => {
     const contextValueGlobal = {
       activeNotes: [],
+      searchTerm: "",
     };
     const contextValueAuth = {
       userData: { user: { uid: "kjdhkd" } },
