@@ -1,0 +1,21 @@
+export const mockError = {
+  code: 400,
+  message: "An error has occurred. Please try again.",
+};
+
+export const mockLogin = {
+  kind: "identitytoolkit#VerifyPasswordResponse",
+  localId: "fiBjm1jd7wZwqbbnUxBpiV8VyFU2",
+  email: "paola@gmail.com",
+  displayName: "",
+  idToken:
+    "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNhYTE0OGNkMDcyOGUzMDNkMzI2ZGU1NjBhMzVmYjFiYTMyYTUxNDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vY2Fwc3RvbmUzLTJhYmFkIiwiYXVkIjoiY2Fwc3RvbmUzLTJhYmFkIiwiYXV0aF90aW1lIjoxNjQzMzExOTE0LCJ1c2VyX2lkIjoiZmlCam0xamQ3d1p3cWJiblV4QnBpVjhWeUZVMiIsInN1YiI6ImZpQmptMWpkN3dad3FiYm5VeEJwaVY4VnlGVTIiLCJpYXQiOjE2NDMzMTE5MTQsImV4cCI6MTY0MzMxNTUxNCwiZW1haWwiOiJwYW9sYUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsicGFvbGFAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.ZLP8H8mp-wCmwnWqwv62QwJzDz6XArjJK4xjMsRAFZrMGbGEbA_2eJHErZPdyblLbD4D0R0ucFN0H-igwkxByNRlyVKaQkq3BBy4NTqDW1uIPhBA4Eb7E_513DZh-TcERDOw2mtEBggtPIjJs0f2_TCXcElASUu1YU5tH5coMylm2NmZjzdTQfLp1xGIZVZ0MidaFt7rNlFQU8HN8JV76LdvbaTpVv19g8Wvuv9c45lSR6WPmQbxGnDmcETDEqqO3EjVA5Ac6rOAqOmObLic9hpd6kmbToSBx7BwlBY1HN_wCkmdnY2K1fk1lP3axIy0CGlTMssOo9qbpTKRGxxWew",
+  registered: true,
+  refreshToken:
+    "AFxQ4_paT7DMQzx_5VAy3ZGgn6nUsuI5ywiV97CKsxO_KG0B9ZIrhZIv9CRyAI-OdfCAyUEM5Smj9Gvp-2pXDwcTct-_rtIyJtlSuFvo4o73dYKc26HFbSqR5T4EeFH0Wljw_FqkPba07tP8A7cYMzvBlsEb-qMIqEarA33LrYbsj1IrwkGgwVLEibe-fXT73gyDHa3-l8OyvFwBBkI5CdEXRYe8VmCs4Q",
+  expiresIn: "3600",
+};
+
+export const mockLogout = {
+  successful: true,
+};
