@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiX, FiCheck, FiTrash, FiRotateCcw } from "react-icons/fi";
 import { BiColorFill } from "react-icons/bi";
 import { HuePicker } from "react-color";
@@ -33,26 +33,18 @@ function NoteForm({
     background: "#fff",
   });
 
-  console.log(noteDataEdit);
-  const [noteData, setNoteData] = useState(
-    noteDataEdit
-      ? noteDataEdit === undefined
-        ? {
-            note: "",
-            color: "#fff",
-            status: true,
-            idUser: userData.user.uid,
-          }
-        : noteDataEdit
-      : {
-          note: "",
-          color: "#fff",
-          status: true,
-          idUser: userData.user.uid,
-        }
-  );
+  const [noteData, setNoteData] = useState({
+    note: "",
+    color: "#fff",
+    status: true,
+    idUser: userData.user.uid,
+  });
 
-  console.log(noteData);
+  useEffect(() => {
+    noteDataEdit === undefined
+      ? console.log("undefined")
+      : setNoteData(noteDataEdit);
+  }, [noteDataEdit]);
 
   const handleChange = ({ fieldName, event }) => {
     setNoteData({
